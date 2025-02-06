@@ -2,3 +2,5 @@ snowflake-connector-python
 streamlit
 cryptography
 pandas
+streamlit_extras
+streamlit_option_menu

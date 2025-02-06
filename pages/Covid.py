@@ -4,10 +4,13 @@ import os
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.backends import default_backend
 import connection_snowflake
+from streamlit_extras.app_logo import add_logo
+
+add_logo("logo.png")
 
 # Path to the RSA private key
 current_directory = os.path.dirname(os.path.abspath(__file__))
-key_path = os.path.join(current_directory, 'rsa_key.p8')
+key_path = os.path.join(os.path.dirname(__file__), '..', 'rsa_key.p8')
 
 # Load the RSA private key
 with open(key_path, "rb") as key:
@@ -35,7 +38,7 @@ conn = connector.connect()
 query = f"""
 SELECT PAGE_NAME, OVERVIEW, VIEWS_PUBLISHED, SOURCE_LINK, IMAGE_URLS
 FROM WEBPAGE_DATA 
-WHERE PAGE_NAME = 'Banking Analytics'
+WHERE PAGE_NAME = 'Covid 19'
 """
 
 # Execute the query
@@ -57,7 +60,7 @@ if not df.empty:
     views_published = df.iloc[0]['VIEWS_PUBLISHED']
     source_link = df.iloc[0]['SOURCE_LINK']
     image_urls = df.iloc[0]['IMAGE_URLS']
-
+    
     # Show the page overview
     st.title(f"**{page_name} Data**")
     st.header("Overview")
@@ -67,28 +70,26 @@ if not df.empty:
     st.header("Views Published")
     sections = views_published.split("\n")  # Assuming sections are separated by two newlines
 
-        # Loop through each section, format the heading, and show the description
+    # Loop through each section, format the heading, and show the description
     for section in sections:
-            if ':' in section:
-                heading, description = section.split(":", 1)
-                st.markdown(f"**{heading.strip()}**")  # Make the heading bold
-                st.write(description.strip())  # Show the description as plain text
-                
-    # Show the source link(s)
+        if ':' in section:
+            heading, description = section.split(":", 1)
+            st.markdown(f"**{heading.strip()}**")  # Make the heading bold
+            st.write(description.strip())  # Show the description as plain text
+
+    # Show the source link
     st.header("Source Links")
-    
-    # If the source links are in a single string, clean them up and display them as separate clickable links
+
+    # Ensure image URLs are in a list format
     if isinstance(source_link, str):
         source_link = source_link.strip().split("\n")
 
     source_link = [link for link in source_link if link]
-
     if isinstance(image_urls, str):
         image_urls = image_urls.strip("[]").replace('"', '').replace('\n', '').split(", ")
 
 
-    # Check if there are source links and image URLs, and they match in length
-    if len(source_link) == len(image_urls):
+    if len(image_urls) == len(source_link):
         # Define the CSS for the hover effect, card styling, and center alignment
         st.markdown("""
             <style>
@@ -97,20 +98,21 @@ if not df.empty:
                     border-radius: 8px;
                     padding: 10px;
                     margin: 10px;
-                    display: inline-flex;
+                    display: flex;
                     justify-content: center;
                     align-items: center;
                     width: 100%;
                     max-width: 250px;
-                    height: 200px;
+                    height: 200px; /* Fixed card height */
                     text-align: center;
                     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
                     transition: transform 0.3s ease-in-out;
-                    flex-direction: column;
+                    flex-direction: column; /* Stack content vertically */
                 }
                 .card img {
-                    max-width: 100%;
-                    max-height: 100%;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain; /* Ensures the image is centered and maintains its aspect ratio */
                     border-radius: 5px;
                     transition: transform 0.3s ease-in-out;
                 }
@@ -120,11 +122,12 @@ if not df.empty:
                 }
                 .card-caption {
                     font-weight: bold;
-                    margin-top: 5px;
+                    margin-top: 10px;
                 }
             </style>
         """, unsafe_allow_html=True)
 
+        # Create a dynamic number of columns based on the number of images
         num_cols = 4  # You can adjust the number of columns here (4 for 4 cards per row)
         cols = st.columns(num_cols)  # Create columns
 
