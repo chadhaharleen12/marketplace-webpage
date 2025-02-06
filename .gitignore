@@ -1,0 +1,32 @@
+# Python bytecode files
+__pycache__/
+*.py[cod]
+
+# Virtual environment directories
+venv/
+env/
+*.env
+
+# IDE-specific files (e.g., PyCharm, VS Code)
+.vscode/
+.idea/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Distribution / packaging files
+*.egg
+*.egg-info/
+dist/
+build/
+pip-wheel-metadata/
+
+# Testing files
+*.log
+*.tox
+*.coverage
+*.hypothesis/
+
+# Other system files
+.DS_Store
+Thumbs.db
