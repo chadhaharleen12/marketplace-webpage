@@ -1,13 +1,43 @@
 import streamlit as st
-from streamlit_extras.app_logo import add_logo
+st.markdown(
+    """
+    <style>
+        .stButton>button {
+            width: 100%;
+            padding: 1px;
+            font-size: 18px;
+            background-color: ;
+            border: none;
+            border-radius: 10px;
+            margin-bottom: none;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stButton>button:hover {
+            background-color: ;
+        }
 
-add_logo("logo.png")
+        .stButton {
+            margin-top: none;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+st.sidebar.image("logo.png", use_container_width=True)
+
+tile_1 = st.sidebar.button("Foreign Exchange Rate")
+tile_2 = st.sidebar.button("Banking Analytics")
+tile_3 = st.sidebar.button("Covid 19")
+tile_4 = st.sidebar.button("Demographics")
 
 
-fer = st.Page("fer.py", title="Foreign Exchange Rate")
-covid = st.Page("covid.py", title="Covid 19")
-banking = st.Page("banking.py", title="Banking Analytics")
-demographics = st.Page("demographics.py", title="Demographics")
-
-pg = st.navigation([fer, covid, banking, demographics])
-pg.run()
+if tile_1:
+    import fer  
+elif tile_2:
+    import banking 
+elif tile_3:
+    import covid  
+elif tile_4:
+    import demographics 
