@@ -6,9 +6,23 @@ from cryptography.hazmat.backends import default_backend
 import connection_snowflake
 from streamlit_extras.app_logo import add_logo
 
-add_logo("logo.png")
+st.markdown("""
+    <style>
+        div[data-testid="stSidebarHeader"] > img, div[data-testid="collapsedControl"] > img {
+            height: 6rem;
+            width: auto;
+        }
+        
+        div[data-testid="stSidebarHeader"], div[data-testid="stSidebarHeader"] > *,
+        div[data-testid="collapsedControl"], div[data-testid="collapsedControl"] > * {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
-# Path to the RSA private key
+st.logo("insights_logo.png")
+
 current_directory = os.path.dirname(os.path.abspath(__file__))
 key_path = os.path.join(os.path.dirname(__file__), '..', 'rsa_key.p8')
 
