@@ -4,7 +4,7 @@ import streamlit as st
 st.markdown("""
     <style>
         div[data-testid="stSidebarHeader"] > img, div[data-testid="collapsedControl"] > img {
-            height: 6rem;
+            height: 8rem;
             width: auto;
         }
         

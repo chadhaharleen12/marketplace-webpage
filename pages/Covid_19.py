@@ -9,7 +9,7 @@ from streamlit_extras.app_logo import add_logo
 st.markdown("""
     <style>
         div[data-testid="stSidebarHeader"] > img, div[data-testid="collapsedControl"] > img {
-            height: 6rem;
+            height: 8rem;
             width: auto;
         }
         
