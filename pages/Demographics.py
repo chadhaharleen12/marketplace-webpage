@@ -115,7 +115,7 @@ if not df.empty:
                 justify-content: center;
                 align-items: center;
                 width: 100%;
-                max-width: 250px;
+                max-width: 170px;
                 height: 200px;
                 text-align: center;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);

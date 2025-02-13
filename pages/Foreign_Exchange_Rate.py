@@ -110,7 +110,8 @@ if not df.empty:
                 display: inline-flex;
                 justify-content: center;
                 align-items: center;
-                max-width: 250px;
+                width:100%;
+                max-width: 170px;
                 height: 200px;
                 text-align: center;
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
