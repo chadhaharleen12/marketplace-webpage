@@ -1,22 +1,29 @@
 import streamlit as st
 
 # Custom CSS to adjust the logo size
+# Set page config with logo
+st.set_page_config(page_title="InSights", page_icon="insights_logo_new_r.png", layout="wide")
+
+# Inject CSS to style the sidebar logo
 st.markdown("""
     <style>
-        div[data-testid="stSidebarHeader"] > img, div[data-testid="collapsedControl"] > img {
-            height: 8rem;
-            width: auto;
-        }
-        
+        /* Sidebar header styling */
         div[data-testid="stSidebarHeader"], div[data-testid="stSidebarHeader"] > *,
         div[data-testid="collapsedControl"], div[data-testid="collapsedControl"] > * {
             display: flex;
             align-items: center;
         }
+
+        div[data-testid="stSidebarHeader"] > img, div[data-testid="collapsedControl"] > img {
+            height: 4rem;
+            width: auto;
+            margin-top : 1rem;
+        }
     </style>
 """, unsafe_allow_html=True)
 
-st.logo("insights_logo.png")
+# Display logo
+st.logo("insights_logo_new_r.png")
 
 st.header("Welcome to InSights")
 

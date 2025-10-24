@@ -26,9 +26,9 @@ def connection_snowflake():
     # Return connection parameters in a dictionary
     conn_params = {
         'user': 'sanchit.arora@cginfinity.com',
-        'account': 'FWB23065.east-us-2.aws',
+        'account': 'fwb23065',
         'private_key': pkb,
-        'warehouse': 'SCT_HKAUR_WH',
+        'warehouse': 'SCT_SARORA_WH',
         'database': 'SCT_HKAUR_DB',
         'schema': 'SCT_HKAUR_SCHEMA'
     }

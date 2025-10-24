@@ -1,5 +1,5 @@
 snowflake-connector-python
-streamlit
+streamlit==1.46.0
 cryptography
 pandas
 streamlit_extras
